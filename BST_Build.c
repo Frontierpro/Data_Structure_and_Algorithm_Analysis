@@ -62,7 +62,7 @@ leaf Build_Tree(int Num)
     for (count = 0; count < 2 * Num; count++)
         *(node + count) = count;
     tail = (leaf *)malloc(Num * sizeof(leaf));
-    srand((int)time(0));
+    srand((int)time(NULL));
     for (count = 0; count < Num; count++) {
         *(tail + count) = (struct Node *)malloc(sizeof(struct Node));
         (*(tail + count))->Left = NULL;
