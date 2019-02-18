@@ -94,7 +94,7 @@ void Element_Create(int *Element, int Num)
     node = (int *)malloc(10 * Num * sizeof(int));
     for (pos = 0; pos < 10 * Num; pos++)
         *(node + pos) = pos + 1;
-    srand((int)time(0));
+    srand((int)time(NULL));
     for (pos = 0; pos < Num; pos++) {
         right = rand() % (10 * Num - pos) + pos;
         temp = *(node + right);
