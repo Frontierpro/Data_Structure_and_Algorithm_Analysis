@@ -12,7 +12,7 @@ struct Node {
 item Polynomial_Read(int Num);
 item Polynomial_Sum(item Alpha, item Beta);
 item Polynomial_Product(item Alpha, item Beta);
-void Equal_Merge(item head);
+void Item_Merge(item head);
 item Zero_Delete(item head);
 void Selection_Sort(item head);
 void Out_Put(item Head);
@@ -97,7 +97,7 @@ item Polynomial_Sum(item Alpha, item Beta)
         tail = temp;
         Beta = Beta->Next;
     }
-    Equal_Merge(head);
+    Item_Merge(head);
     sum = Zero_Delete(head);
     Selection_Sort(sum);
 
@@ -124,14 +124,14 @@ item Polynomial_Product(item Alpha, item Beta)
         }
         Alpha = Alpha->Next;
     }
-    Equal_Merge(head);
+    Item_Merge(head);
     product = Zero_Delete(head);
     Selection_Sort(product);
 
     return product;
 }
 
-void Equal_Merge(item head)
+void Item_Merge(item head)
 {
     item tail, temp;
 
