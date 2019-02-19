@@ -12,7 +12,7 @@ typedef child leaf;
 
 leaf Build_Tree(int Num);
 void Element_Create(int *Element, int Num);
-int Byte_Count(int Num);
+int Num_Count(int Num);
 void Out_Put(int *Element, int Num, int Count);
 void Quick_Sort(int *Element, int Num);
 int Sort_Order(const void *left, const void *right);
@@ -33,7 +33,7 @@ int main(void)
     printf("The binary_search_tree has been built.\n");
     printf("And the shape of the tree can not be changed.\n");
     Element_Create(Element, Num);
-    Count = Byte_Count(Num);
+    Count = Num_Count(Num);
     printf("The elements should be inserted into the tree are as follows.\n");
     Out_Put(Element, Num, Count + 2);
 
@@ -104,7 +104,7 @@ void Element_Create(int *Element, int Num)
     free(node);
 }
 
-int Byte_Count(int Num)
+int Num_Count(int Num)
 {
     int count = 0;
 
