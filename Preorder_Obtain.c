@@ -11,7 +11,7 @@ struct Node {
 typedef child leaf;
 
 void Build_Tree(int *Inorder, int *Postorder, int Num);
-int Byte_Count(int Num);
+int Num_Count(int Num);
 leaf Prefix_Order(int *Inorder, int *Postorder, int Num);
 void Preorder_Traversal(leaf Root, int Count);
 void Out_Put(int *Tree, int Num, int Count);
@@ -28,7 +28,7 @@ int main(void)
     Inorder = (int *)malloc(Num * sizeof(int));
     Postorder = (int *)malloc(Num * sizeof(int));
     Build_Tree(Inorder, Postorder, Num);
-    Count = Byte_Count(Num);
+    Count = Num_Count(Num);
 
     printf("The inorder of the random_created binary tree is as follows.\n");
     Out_Put(Inorder, Num, Count + 1);
@@ -58,7 +58,7 @@ void Build_Tree(int *Inorder, int *Postorder, int Num)
     for (rear = 0; rear < Num; rear++)
         *(Inorder + rear) = rear + 1;
     *(stack + top++) = *(Inorder + front++);
-    srand((int)time(0));
+    srand((int)time(NULL));
     while (top != 0 || front < rear) {
         if (top == 0)
             *(stack + top++) = *(Inorder + front++);
@@ -74,7 +74,7 @@ void Build_Tree(int *Inorder, int *Postorder, int Num)
     free(stack);
 }
 
-int Byte_Count(int Num)
+int Num_Count(int Num)
 {
     int count = 0;
 
