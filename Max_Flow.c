@@ -10,7 +10,7 @@ struct Node {
 typedef struct Node path;
 
 int **Map_Create(int Num);
-int Byte_Count(int Num);
+int Num_Count(int Num);
 int **Read_Map(int **Map, int Num, int Count);
 void Max_Flow(int **Map, int Num, int Head, int Tail);
 int Find_Path(int **Map, int Num, path *queue, int *stack, int top, int Tail);
@@ -27,7 +27,7 @@ int main(void)
     printf("Enter the number of nodes in the graph (positive): ");
     scanf("%d", &Num);
     Map = Map_Create(Num);
-    Count = Byte_Count(Num);
+    Count = Num_Count(Num);
     printf("The random_created map is as follows.\n");
     Graph = Read_Map(Map, Num, Count);
 
@@ -88,7 +88,7 @@ int **Map_Create(int Num)
     return map;
 }
 
-int Byte_Count(int Num)
+int Num_Count(int Num)
 {
     int count = 0;
 
