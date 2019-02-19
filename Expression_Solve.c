@@ -12,8 +12,8 @@ int main(void)
 {
     char *Expression;
     double *Stack;
-    bool Judge;
     double Solution;
+    bool Judge;
 
     Expression = (char *)malloc(100 * sizeof(char));
     Stack = (double *)malloc(100 * sizeof(double));
