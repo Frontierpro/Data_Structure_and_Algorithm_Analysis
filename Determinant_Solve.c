@@ -36,7 +36,7 @@ int main(void)
 double **Determinant_Create(int Num)
 {
     double **determinant;
-    int row, col, sign, temp;
+    int row, col, temp;
 
     determinant = (double **)malloc(Num * sizeof(double *));
     for (row = 0; row < Num; row++)
@@ -49,8 +49,7 @@ double **Determinant_Create(int Num)
                 *(*(determinant + row) + col) = 0;
                 continue;
             }
-            sign = rand() % 4;
-            if (sign)
+            if (rand() % 4)
                 *(*(determinant + row) + col) = (double)temp;
             else
                 *(*(determinant + row) + col) = -(double)temp;
