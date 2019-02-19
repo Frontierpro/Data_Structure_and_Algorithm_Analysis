@@ -43,8 +43,8 @@ int main(void)
     Levelorder_Traversal(Root, Num);
 
     printf("Press ENTER to quit.\n");
-    free(Element);
     Memory_Clear(Root);
+    free(Element);
     getchar();
     getchar();
 
