@@ -3,7 +3,7 @@
 #include <time.h>
 
 int **Map_Create(int Num);
-int Byte_Count(int Num);
+int Num_Count(int Num);
 void Read_Map(int **Map, int Num, int Count);
 int *Depth_First(int **Map, int Num);
 void Find_Path(int **Map, int *stack, int *label, int Num, int top, int count);
@@ -21,7 +21,7 @@ int main(void)
     printf("Enter the number (positive) of nodes in the graph: ");
     scanf("%d", &Num);
     Map = Map_Create(Num);
-    Count = Byte_Count(Num);
+    Count = Num_Count(Num);
     printf("The random_created map is as follows.\n");
     Read_Map(Map, Num, Count);
 
@@ -68,7 +68,7 @@ int **Map_Create(int Num)
     return map;
 }
 
-int Byte_Count(int Num)
+int Num_Count(int Num)
 {
     int count = 0;
 
