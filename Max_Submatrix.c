@@ -48,20 +48,20 @@ int main(void)
 
 int **Matrix_Create(int Row, int Col)
 {
-    int row, col, fab;
+    int row, col, temp;
     int **matrix;
 
     matrix = (int **)malloc(Row * sizeof(int *));
     for (row = 0; row < Row; row++)
         *(matrix + row) = (int *)malloc(Col * sizeof(int));
-    srand((int)time(0));
+    srand((int)time(NULL));
     for (row = 0; row < Row; row++)
         for (col = 0; col < Col; col++) {
-            fab = rand() % 10;
+            temp = rand() % 10;
             if (rand() % 2)
-                *(*(matrix + row) + col) = fab;
+                *(*(matrix + row) + col) = temp;
             else
-                *(*(matrix + row) + col) = -fab;
+                *(*(matrix + row) + col) = -temp;
         }
 
     return matrix;
