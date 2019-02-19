@@ -22,7 +22,7 @@ int main(void)
     char *Command;
 
     Command = (char *)malloc(10 * sizeof(char));
-    printf("Enter \"insert\", \"delete\", \"dir\" or \"quit\" command!\n");
+    printf("Enter \"insert\", \"delete\", \"query\" or \"quit\" command!\n");
     printf("Enter command: ");
     scanf("%s", Command);
     while (strcmp(Command, "quit")) {
@@ -34,7 +34,7 @@ int main(void)
             scanf("%d", &Num);
             Root = Element_Delete(Root, Num);
         }
-        else if (strcmp(Command, "dir") == 0) {
+        else if (strcmp(Command, "query") == 0) {
             if (Root) {
                 printf("The binary_search_tree is as follows.\n");
                 Levelorder_Traversal(Root);
@@ -43,7 +43,7 @@ int main(void)
                 printf("The binary_search_tree is empty!\n");
         }
         else
-            printf("Enter \"insert\", \"delete\", \"dir\" or \"quit\" command!\n");
+            printf("Enter \"insert\", \"delete\", \"query\" or \"quit\" command!\n");
         printf("Enter command: ");
         scanf("%s", Command);
     }
