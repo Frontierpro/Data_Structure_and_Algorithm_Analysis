@@ -3,7 +3,7 @@
 #include <time.h>
 
 double **Determinant_Create(int Num);
-int Byte_Count(int Num);
+int Num_Count(int Num);
 void Out_Put(double **Determinant, int Num, int Count);
 double Determinant_Solve(double **Determinant, int start, int Num);
 void Memory_Clear(double **Determinant, int Num);
@@ -17,7 +17,7 @@ int main(void)
     printf("Enter the degree (positive) of the determinant: ");
     scanf("%d", &Num);
     Determinant = Determinant_Create(Num);
-    Count = Byte_Count(Num);
+    Count = Num_Count(Num);
     printf("The random_created determinant is as follows.\n");
     Out_Put(Determinant, Num, Count + 2);
 
@@ -59,7 +59,7 @@ double **Determinant_Create(int Num)
     return determinant;
 }
 
-int Byte_Count(int Num)
+int Num_Count(int Num)
 {
     int count = 0;
 
