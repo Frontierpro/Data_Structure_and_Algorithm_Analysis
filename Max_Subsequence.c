@@ -48,15 +48,15 @@ int main(void)
 
 void Sequence_Create(int *Sequence, int Num)
 {
-    int pos, fab;
+    int pos, temp;
 
-    srand((int)time(0));
+    srand((int)time(NULL));
     for (pos = 0; pos < Num; pos++) {
         fab = rand() % 10;
         if (rand() % 2)
-            *(Sequence + pos) = fab;
+            *(Sequence + pos) = temp;
         else
-            *(Sequence + pos) = -fab;
+            *(Sequence + pos) = -temp;
     }
 }
 
