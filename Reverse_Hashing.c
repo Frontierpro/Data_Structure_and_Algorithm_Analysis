@@ -3,7 +3,7 @@
 #include <time.h>
 
 void Hash_Function(int *Hash, int Num);
-int Byte_Count(int Num);
+int Num_Count(int Num);
 int Top_Sort(int *Hash, int *Queue, int Num);
 void Read_Map(int **map, int *front, int *Queue, int *Hash, int Num);
 void Out_Put(int *Array, int Num, int Count);
@@ -20,7 +20,7 @@ int main(void)
     printf("The hashing function is position = x %% Num.\n");
     printf("With linear probing to deal with collisions.\n");
     Hash_Function(Hash, Num);
-    Count = Byte_Count(Num);
+    Count = Num_Count(Num);
     printf("The hashmap generated is as follows.\n");
     Out_Put(Hash, Num, Count + 1);
 
@@ -62,7 +62,7 @@ void Hash_Function(int *Hash, int Num)
     }
 }
 
-int Byte_Count(int Num)
+int Num_Count(int Num)
 {
     int count = 0;
 
