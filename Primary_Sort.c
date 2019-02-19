@@ -3,7 +3,7 @@
 #include <time.h>
 
 void Random_Initial(int *List, int Num);
-int Byte_Count(int Num);
+int Num_Count(int Num);
 void Array_Copy(int *List, int *Sort, int Num);
 void Selection_Sort(int *Sort, int Num);
 void Bubble_Sort(int *Sort, int Num);
@@ -22,7 +22,7 @@ int main(void)
     Sort = (int *)malloc(Num * sizeof(int));
     printf("The random_initial list is as follows.\n");
     Random_Initial(List, Num);
-    Count = Byte_Count(Num);
+    Count = Num_Count(Num);
     Out_Put(List, Num, Count + 1);
 
     Array_Copy(List, Sort, Num);
@@ -57,7 +57,7 @@ void Random_Initial(int *List, int Num)
 
     for (pos = 0; pos < Num; pos++)
         *(List + pos) = pos;
-    srand((int)time(0));
+    srand((int)time(NULL));
     for (left = 0; left < Num; left++) {
         right = rand() % (Num - left) + left;
         temp = *(List + left);
@@ -66,7 +66,7 @@ void Random_Initial(int *List, int Num)
     }
 }
 
-int Byte_Count(int Num)
+int Num_Count(int Num)
 {
     int count = 0;
 
