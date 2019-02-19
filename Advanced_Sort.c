@@ -3,7 +3,7 @@
 #include <time.h>
 
 void Random_Initial(int *List, int Num);
-int Byte_Count(int Num);
+int Num_Count(int Num);
 void Array_Copy(int *List, int *Sort, int Num);
 void Heap_Sort(int *Sort, int Num);
 void Percolate_Down(int *Sort, int pos, int Num);
@@ -25,7 +25,7 @@ int main(void)
     Sort = (int *)malloc(Num * sizeof(int));
     printf("The random_initial list is as follows.\n");
     Random_Initial(List, Num);
-    Count = Byte_Count(Num);
+    Count = Num_Count(Num);
     Out_Put(List, Num, Count + 1);
 
     Array_Copy(List, Sort, Num);
@@ -38,7 +38,7 @@ int main(void)
     Out_Put(Sort, Num, Count + 1);
     Array_Copy(List, Sort, Num);
     Divide_Conquer(List, Sort, 0, Num - 1);
-    printf("The sorting result solved by divide_merge is as follows.\n");
+    printf("The sorting result solved by merge_sort is as follows.\n");
     Out_Put(Sort, Num, Count + 1);
 
     printf("Press ENTER to quit.\n");
@@ -65,7 +65,7 @@ void Random_Initial(int *List, int Num)
     }
 }
 
-int Byte_Count(int Num)
+int Num_Count(int Num)
 {
     int count = 0;
 
