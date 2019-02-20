@@ -52,7 +52,7 @@ void Sequence_Create(int *Sequence, int Num)
 
     srand((int)time(NULL));
     for (pos = 0; pos < Num; pos++) {
-        fab = rand() % 10;
+        temp = rand() % 10;
         if (rand() % 2)
             *(Sequence + pos) = temp;
         else
