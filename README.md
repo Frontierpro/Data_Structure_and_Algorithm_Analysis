@@ -11,3 +11,9 @@
     <li>Install the Microsoft C/C++ extension.</li>
     <li>MinGW compiler should be added into system path.</li>
 </ul>
+<h3>Step:</h3>
+<ul>
+    <li>Download this repository and unzip it.</li>
+    <li>Add the folder to vscode workspace directly.</li>
+    <li>Change the value of miDebbuggerPath in the configuration.</li>
+</ul>
