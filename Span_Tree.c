@@ -25,7 +25,7 @@ int main(void)
     int Num, Sum, Count;
     int **Map, **Graph;
 
-    printf("Enter the number of nodes in the graph (positive): ");
+    printf("Enter the number (positive) of nodes in the graph: ");
     scanf("%d", &Num);
     Map = Map_Create(Num);
     Count = Num_Count(Num);
