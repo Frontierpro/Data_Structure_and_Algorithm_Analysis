@@ -17,7 +17,7 @@ int main(void)
 
     printf("Enter the rows (positive) of the matrix: ");
     scanf("%d", &Row);
-    printf("Enter the columns of the matrix (positive): ");
+    printf("Enter the columns (positive) of the matrix: ");
     scanf("%d", &Col);
     Index = (int *)malloc(4 * sizeof(int));
     *Index = *(Index + 1) = *(Index + 2) = *(Index + 3) = -1;
