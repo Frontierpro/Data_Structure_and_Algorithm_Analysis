@@ -15,5 +15,5 @@
 <ul>
     <li>Download this repository and unzip it.</li>
     <li>Add the folder to vscode workspace directly.</li>
-    <li>Change the value of miDebbuggerPath in the configuration.</li>
+    <li>Change the value of "miDebbuggerPath" in ".vscode/launch.json".</li>
 </ul>
