@@ -15,7 +15,7 @@ int main(void)
     int *Index;
     int **Matrix;
 
-    printf("Enter the rows of the matrix (positive): ");
+    printf("Enter the rows (positive) of the matrix: ");
     scanf("%d", &Row);
     printf("Enter the columns of the matrix (positive): ");
     scanf("%d", &Col);
