@@ -13,7 +13,7 @@ int main(void)
     int Num, Count;
     int *Hash, *Queue;
 
-    printf("Enter the capacity of the hash map (positive): ");
+    printf("Enter the capacity (positive) of the hash map: ");
     scanf("%d", &Num);
     Hash = (int *)malloc(Num * sizeof(int));
     Queue = (int *)malloc(Num * sizeof(int));
