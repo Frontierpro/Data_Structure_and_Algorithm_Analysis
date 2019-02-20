@@ -14,7 +14,7 @@ int main(void)
     int Num, Sum;
     int *Sequence, *Index;
 
-    printf("Enter the length of the sequence (positive): ");
+    printf("Enter the length (positive) of the sequence: ");
     scanf("%d", &Num);
     Sequence = (int *)malloc(Num * sizeof(int));
     Index = (int *)malloc(2 * sizeof(int));
