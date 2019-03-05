@@ -12,6 +12,7 @@ typedef child leaf;
 
 leaf Element_Insert(leaf Root, int Num);
 leaf Element_Delete(leaf Root, int Num);
+leaf Find_Min(leaf Root);
 void Levelorder_Traversal(leaf Root);
 void Memory_Clear(leaf Root);
 
@@ -85,7 +86,8 @@ leaf Element_Delete(leaf Root, int Num)
         Root->Right = Element_Delete(Root->Right, Num);
     else {
         if (Root->Left && Root->Right) {
-            Root->Value = Root->Right->Value;
+            temp = Find_Min(Root->Right);
+            Root->Value = temp->Value;
             Root->Right = Element_Delete(Root->Right, Root->Value);
         }
         else {
@@ -98,6 +100,14 @@ leaf Element_Delete(leaf Root, int Num)
         }
     }
 
+    return Root;
+}
+
+leaf Find_Min(leaf Root)
+{
+    while (Root->Left)
+        Root = Root->Left;
+    
     return Root;
 }
 
