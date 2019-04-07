@@ -94,7 +94,7 @@ leaf Element_Delete(leaf Root, int Num)
             temp = Root;
             if (Root->Left == NULL)
                 Root = Root->Right;
-            else if (Root->Right == NULL)
+            else
                 Root = Root->Left;
             free(temp);
         }
