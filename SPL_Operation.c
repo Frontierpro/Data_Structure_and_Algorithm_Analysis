@@ -3,25 +3,18 @@
 #include <string.h>
 
 typedef struct Node *child;
-typedef struct Node *parent;
 struct Node {
     int Value;
     child Left;
     child Right;
-    parent Top;
 };
-typedef struct Node *leaf;
+typedef child leaf;
 
 leaf Element_Insert(leaf Root, int Num);
 leaf Element_Delete(leaf Root, int Num);
-leaf Find_Min(leaf Root);
-leaf Splay_Rotation(leaf temp);
+leaf Splay_Rotation(leaf Root, int Num);
 leaf Left_Rotation(leaf Root);
 leaf Right_Rotation(leaf Root);
-leaf Left_Left(leaf Root);
-leaf Left_Right(leaf Root);
-leaf Right_Right(leaf Root);
-leaf Right_Left(leaf Root);
 void Levelorder_Traversal(leaf Root);
 void Memory_Clear(leaf Root);
 
@@ -65,140 +58,93 @@ int main(void)
 
 leaf Element_Insert(leaf Root, int Num)
 {
-    leaf temp = Root, top = NULL;
+    leaf temp;
 
-    while (temp) {
-        top = temp;
-        if (Num < top->Value)
-            temp = top->Left;
-        else if (Num > top->Value)
-            temp = top->Right;
-        else {
-            printf("This element has been in the binary_search_tree!\n");
-            return Root;
-        }
+    Root = Splay_Rotation(Root, Num);
+    if (Root == NULL) {
+        Root = (struct Node *)malloc(sizeof(struct Node));
+        Root->Value = Num;
+        Root->Left = Root->Right = NULL;
     }
-    temp = (struct Node *)malloc(sizeof(struct Node));
-    temp->Value = Num;
-    temp->Left = NULL;
-    temp->Right = NULL;
-    temp->Top = top;
-    if (top) {
-        if (top->Value > temp->Value)
-            top->Left = temp;
-        else
-            top->Right = temp;
+    else if (Num < Root->Value) {
+        temp = (struct Node *)malloc(sizeof(struct Node));
+        temp->Value = Num;
+        temp->Left = Root->Left;
+        temp->Right = Root;
+        Root->Left = NULL;
+        Root = temp;
     }
-    Root = Splay_Rotation(temp);
-
+    else if (Num > Root->Value) {
+        temp = (struct Node *)malloc(sizeof(struct Node));
+        temp->Value = Num;
+        temp->Right = Root->Right;
+        temp->Left = Root;
+        Root->Right = NULL;
+        Root = temp;
+    }
+    else
+        printf("This element has been in the binary_search_tree!\n");
+    
     return Root;
 }
 
 leaf Element_Delete(leaf Root, int Num)
 {
-    leaf temp = Root, min;
-    int flag = 1;
+    leaf temp;
 
-    while (temp) {
-        if (Num < temp->Value)
-            temp = temp->Left;
-        else if (Num > temp->Value)
-            temp = temp->Right;
+    Root = Splay_Rotation(Root, Num);
+    if (Root && Num == Root->Value) {
+        if (Root->Left == NULL)
+            temp = Root->Right;
         else {
-            if (flag) {
-                Root = Splay_Rotation(temp);
-                temp = Root;
-                flag = 0;
-            }
-            if (temp->Left && temp->Right) {
-                min = Find_Min(temp->Right);
-                temp->Value = min->Value;
-                Num = temp->Value;
-                temp = min;
-                continue;
-            }
-            else if (temp->Left) {
-                temp->Left->Top = temp->Top;
-                if (temp->Top) {
-                    if (temp->Top->Left == temp)
-                        temp->Top->Left = temp->Left;
-                    else
-                        temp->Top->Right = temp->Left;
-                }
-                else
-                    Root = temp->Left;
-                free(temp);
-            }
-            else if (temp->Right) {
-                temp->Right->Top = temp->Top;
-                if (temp->Top) {
-                    if (temp->Top->Left == temp)
-                        temp->Top->Left = temp->Right;
-                    else
-                        temp->Top->Right = temp->Right;
-                }
-                else
-                    Root = temp->Right;
-                free(temp);
-            }
-            else {
-                if (temp == Root)
-                    Root = NULL;
-                else if (temp->Top->Left == temp)
-                    temp->Top->Left = NULL;
-                else
-                    temp->Top->Right = NULL;
-                free(temp);
-            }
-            return Root;
+            temp = Root->Left;
+            temp = Splay_Rotation(temp, Num);
+            temp->Right = Root->Right;
         }
+        free(Root);
+        Root = temp;
     }
-    printf("There is no such element in the binary_search_tree!\n");
-
+    else
+        printf("There is no such element in the binary_search_tree!\n");
+    
     return Root;
 }
 
-leaf Find_Min(leaf Root)
+leaf Splay_Rotation(leaf Root, int Num)
 {
-    while (Root->Left)
-        Root = Root->Left;
+    leaf left, right, head;
 
-    return Root;
-}
-
-leaf Splay_Rotation(leaf temp)
-{
-    leaf top;
-
-    while (temp->Top) {
-        if (temp->Top->Top == NULL) {
-            if (temp->Top->Value > temp->Value)
-                temp = Left_Rotation(temp->Top);
-            else
-                temp = Right_Rotation(temp->Top);
-            temp->Top = NULL;
+    head = (struct Node *)malloc(sizeof(struct Node));
+    left = right = head;
+    while (Root && Num != Root->Value) {
+        if (Num < Root->Value) {
+            if (Root->Left && Num < Root->Left->Value)
+                Root = Left_Rotation(Root);
+            if (Root->Left == NULL)
+                break;
+            right->Left = Root;
+            right = Root;
+            Root = Root->Left;
         }
         else {
-            top = temp->Top->Top->Top;
-            if (temp->Top->Top->Value > temp->Top->Value && temp->Top->Value > temp->Value)
-                temp = Left_Left(temp->Top->Top);
-            else if (temp->Top->Top->Value > temp->Top->Value && temp->Top->Value < temp->Value)
-                temp = Left_Right(temp->Top->Top);
-            else if (temp->Top->Top->Value < temp->Top->Value && temp->Top->Value < temp->Value)
-                temp = Right_Right(temp->Top->Top);
-            else
-                temp = Right_Left(temp->Top->Top);
-            temp->Top = top;
-            if (top) {
-                if (top->Value > temp->Value)
-                    top->Left = temp;
-                else
-                    top->Right = temp;
-            }
+            if (Root->Right && Num > Root->Right->Value)
+                Root = Right_Rotation(Root);
+            if (Root->Right == NULL)
+                break;
+            left->Right = Root;
+            left = Root;
+            Root = Root->Right;
         }
     }
+    if (Root) {
+        left->Right = Root->Left;
+        right->Left = Root->Right;
+        Root->Left = head->Right;
+        Root->Right = head->Left;
+    }
+    free(head);
 
-    return temp;
+    return Root;
 }
 
 leaf Left_Rotation(leaf Root)
@@ -206,10 +152,7 @@ leaf Left_Rotation(leaf Root)
     leaf temp = Root->Left;
 
     Root->Left = temp->Right;
-    if (temp->Right)
-        temp->Right->Top = Root;
     temp->Right = Root;
-    Root->Top = temp;
 
     return temp;
 }
@@ -219,42 +162,9 @@ leaf Right_Rotation(leaf Root)
     leaf temp = Root->Right;
 
     Root->Right = temp->Left;
-    if (temp->Left)
-        temp->Left->Top = Root;
     temp->Left = Root;
-    Root->Top = temp;
 
     return temp;
-}
-
-leaf Left_Left(leaf Root)
-{
-    Root = Left_Rotation(Root);
-
-    return Left_Rotation(Root);
-}
-
-leaf Right_Right(leaf Root)
-{
-    Root = Right_Rotation(Root);
-
-    return Right_Rotation(Root);
-}
-
-leaf Left_Right(leaf Root)
-{
-    Root->Left = Right_Rotation(Root->Left);
-    Root->Left->Top = Root;
-
-    return Left_Rotation(Root);
-}
-
-leaf Right_Left(leaf Root)
-{
-    Root->Right = Left_Rotation(Root->Right);
-    Root->Right->Top = Root;
-
-    return Right_Rotation(Root);
 }
 
 void Levelorder_Traversal(leaf Root)
