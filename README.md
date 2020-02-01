@@ -1,4 +1,4 @@
-<h1>Data Structure and Algorithm Analysis</h1>
+<h1>Data Structure</h1>
 <h3>Claim:</h3>
 <ul>
     <li>This is a notebook on Introduction to Algorithms.</li>
